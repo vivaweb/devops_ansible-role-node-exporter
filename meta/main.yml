@@ -1,7 +1,7 @@
 galaxy_info:
-  author: your name
-  description: your role description
-  company: your company (optional)
+  author: Rafael Labegalini
+  description: Simple role to install Node Exporter on Amazon Linux 2023 (ARM64)
+  company: Vivaworks
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value

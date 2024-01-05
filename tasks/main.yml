@@ -1,2 +1,41 @@
 ---
-# tasks file for devops_ansible-role-node-exporter
+# tasks file for node-exporter
+- name: Create Node Exporter group
+  group:
+    name: '{{ node_exporter_user }}'
+    system: true
+    state: present
+  register: group
+
+- name: Create system user
+  user:
+    name: '{{ node_exporter_user }}'
+    create_home: false
+    group: '{{ group.name }}'
+    system: '{{ group.system }}'
+    state: present
+  register: user
+
+- name: Fetch NodeExporter
+  get_url:
+    url: https://github.com/prometheus/node_exporter/releases/download/v{{ version }}/node_exporter-{{ version }}.linux-arm64.tar.gz
+    dest: /tmp/node-exporter.tar.gz
+  notify: restart node-exporter
+
+- name: Extract NodeExporter files
+  unarchive:
+    src: /tmp/node-exporter.tar.gz
+    dest: /opt
+    owner: '{{ user.name }}'
+    group: '{{ group.name }}'
+    mode: '0775'
+  notify: restart node-exporter
+
+- name: Creating systemd service
+  template:
+    src: node-exporter.service.j2
+    dest: /etc/systemd/system/node-exporter.service
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart node-exporter
