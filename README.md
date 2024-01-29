@@ -1,17 +1,21 @@
 Node Exporter
 =========
 
-Ansible role to install Node Exporter on Amazon Linux 2023
+Ansible role to install Node Exporter on
 
 Requirements
 ------------
 
-This role only works on Amazon Linux 2023 with ARM64 processors
+This role only works on ARM64 processors
+
+Tested So
+---------
+- Amazon Linux 2023
+- Ubuntu Server 22.04
 
 Role Variables
 --------------
 
 | Name               | Default       | Description                                  |
 |--------------------|---------------|----------------------------------------------|
-| version            | 1.7.0         | Software version to install                  |
 | node_exporter_user | node_exporter | User to be used to run node exporter service |

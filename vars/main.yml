@@ -1,5 +1,3 @@
 ---
 # vars file for devops_ansible-role-node-exporter
-version: '1.7.0'
-
 node_exporter_user: node-exporter

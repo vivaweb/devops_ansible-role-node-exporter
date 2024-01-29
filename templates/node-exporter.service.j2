@@ -6,10 +6,10 @@ StartLimitIntervalSec=0
 [Service]
 Type=simple
 Restart=always
-RestartSec=1
+RestartSec=5
 User={{ user.name }}
 Group={{ group.name }}
-ExecStart=/opt/node_exporter-{{ version }}.linux-arm64/node_exporter
+ExecStart=/opt/node_exporter-1.7.0.linux-arm64/node_exporter
 
 [Install]
 WantedBy=multi-user.target
